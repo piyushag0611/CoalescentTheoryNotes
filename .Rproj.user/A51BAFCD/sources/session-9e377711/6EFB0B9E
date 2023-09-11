@@ -1,0 +1,31 @@
+{
+    "id": "6EFB0B9E",
+    "path": "C:/FallTerm23/Coalescent_Theory/02-chap.Rmd",
+    "project_path": "02-chap.Rmd",
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1694354123255.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "37,281",
+        "scrollLine": "0",
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "docOutlineVisible": "0",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "1946:2006.4000244140625"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1694391533,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1694391533117,
+    "read_only": false,
+    "read_only_alternatives": []
+}

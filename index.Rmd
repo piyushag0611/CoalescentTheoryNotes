@@ -1,0 +1,37 @@
+---
+title: "Notes: Coalescent Theory: John Wakeley"
+author: "Piyush Agarwal"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: This is a notes book on the Coalescent Theory by John Wakeley.
+link-citations: yes
+#github-repo: rstudio/bookdown-demo
+---
+
+# About
+
+I am excited to note down my understanding from *Coalescent Theory: An Introduction* by *John Wakeley*. The book was recommended by my supervisor and was meant to be the first step in my thesis. Sadly, ignorantly I am still not there by the end of my first year. I did read stretches from the book, but did not make it cover to cover. I intend to wash away that mark and get a crucial first step to my thesis done. 
+
+## Motivation
+
+There are a few fold objectives why I want to get some comprehensive set of notes written on the book:
+
+1. It is to cement my own understanding. I know it is not enough to just read and have a claim of understanding. With no exercises, it is difficult to really make sure that I understand the content. I think that by **writing** down important pointers, I can make such a claim.
+
+2. It will be a good written document for future purposes. I can advertise it for my own skills in the coalescent framework and refer to it in the future, given that there is no epdf of the book, and a library copy was difficult to retrieve.
+
+3. Possibly helpful to my group. 
+
+## Content
+
+The way I am joting down points are in the following way:
+
+1. For metrics, distributions I am aiming to write down code, use sequences from NCBI or any other source and demonstrate the principals in the book. 
+
+2. Mathematical expressions, equations will be derived from scratch. People not interested in derivations can simply skip them.
+
+3. I will try to get a good sense of the purely theoretical ideas and make a decent case out of those ideas.
