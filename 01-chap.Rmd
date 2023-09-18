@@ -41,6 +41,64 @@ plot_ms_tree(5, "-T -G 0.1")
 
 5 Sequences {*s1, s2, s3, s4, s5*} are drawn at the current time $t=0$ and going back in time, pairs of lineages merge together. The internal nodes denote the common ancestors of the pair of lineages merging into it. Starting with $n$ samples, ($n=5$ in the above figure), there are $n-1$ internal nodes and a total of $2n-2$ branches with $n$ external branches *connecting the tips to the internal nodes* and $n-2$ internal branches connecting the internal nodes.
 
-### An unnumbered section {.unnumbered}
+## Mutation and Mutation Model
 
-Chapters and sections are numbered by default. To un-number a heading, add a `{.unnumbered}` or the shorter `{-}` at the end of the heading, like in this section.
+1. Variation or polymorphism in genetic data reveals the genealogical structure among the members of the sample. If the sample consists of identical sequences, even though a genealogy exists, there is no way to identify or pin-point a genealogy. So mutations that bring variation in genetic data is said to be the bridge between genealogy and genetic data.
+
+2. Mutations can be of various types:
+    a. Single Nucleotide Polymorphism (SNPs): The sample differs in the nucleotide base at a particular site. Say a sample of 10 sequences might have 6 sequences with nucleotide 'A' on its 3rd site and the rest having a 'G' there.
+    b. Insertions
+    c. Deletions
+    d. length variation
+    
+3. The book largely deals with SNPs with recombination being introduced only in the later chapters. 
+
+4. Two mutation models are considered for the first few chapters:
+    a. Infinite sites model
+    b. Infinite alleles model
+
+5. Infinite sites model - Every mutation (which we think of as a nucleotide substitution) happens at an independent site. So the number of sites with different bases in the sample is equal to the number of mutations that have taken place. 
+
+6. Infinite alleles model - Every mutation introduces a new allele into the population. We can consider the infinite site model to subsume the infinite allele model with the consideration that sequences can only be differentiated and not precisely known. Every new haploid corresponds to a new allele.
+
+7. One might question the appropriateness of the above two models, after all sequences are of finite length and mutations might happen repeatedly on a particular site. John Wakeley has tried to support it by pointing out that the variation is rather small, (polymorphic sites are in humans are of the order $10^{-3}$).
+
+I think that the infinite site model maybe a good first iteration step, but one must consider their data. I work with viral sequences where the mutation rate is much higher and the infinite site model not so appropriate. But to understand the mutation process and how together with genealogy they affect variation in genetic data, the above models do help in that purpose.
+
+## Quantifying Variation in Genetic Data
+
+There are three quantities presented in the book to summarize and quantify genetic data:
+
+1. No. of Segregating Sites in the sample $S$
+
+2. Average pair-wise differences $\pi$
+
+3. Site Frequency spectrum $\xi_i$
+
+$S$ and $\pi$ are straight-forward and easy to understand. Note that $\pi$ can be written as:
+$$\pi = \frac{1}{{n \choose 2}}\sum_{i=1}^n \sum_{j=i+1}^n k_{ij}$$
+
+where $k_{ij}$ is the number of differences between sequence $i$ and sequence $j$. 
+It is clear that these measures though simple and easily obtainable are rather drastic as they reduce all the data to single numbers. 
+The Site Frequency spectrum $\xi_i$ gives a better view of the data. Suppose the ancestral sequence for the given sample is known. Then $\xi_i$ counts the number of sites with $i$ sequences having the mutant base and $n-i$ sequences having the ancestral base. Note that this only works when the infinite sites model is at play. (It will be ambiguous to assign any $\xi_i$ for any site undergoing multiple mutations). Also $\xi_i$ are known as the unfolded site-frequency spectrum, with the condition being that the ancestral sequence is known. With the ancestral sequence unknown, folded site-frequency spectrum ($\eta_i$) is  defined as: $$\eta_i = \frac{\xi_i + \xi_{n-i}}{1+\delta_{i, n-i}} \hspace{1cm} 1\leq i \leq  \left \lfloor \frac{n}{2} \right \rfloor$$
+
+Also, $S$ and $\pi$ can be expressed in terms of $\xi_i$ as follows: 
+$$\begin{align*} S =& \sum_{i=1}^{n-1}\xi_i \\ \pi =& \frac{1}{{n \choose 2}}\sum_{i=1}^{n-1}i(n-i)\xi_i \end{align*}$$
+## Variation in a Real Dataset
+
+The Human PDHA1 dataset is analyzed here. It is a sample consisting of sequences from the 4.2Kb region of the PDHA1 locus from a geographically diverse sample of 35 humans. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

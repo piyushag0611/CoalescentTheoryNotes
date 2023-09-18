@@ -120,7 +120,7 @@
 
 \title{Notes: Coalescent Theory: John Wakeley}
 \author{Piyush Agarwal}
-\date{2023-09-10}
+\date{2023-09-18}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -152,7 +152,8 @@
 I am excited to note down my understanding from \emph{Coalescent Theory: An Introduction} by \emph{John Wakeley}. The book was recommended by my supervisor and was meant to be the first step in my thesis. Sadly, ignorantly I am still not there by the end of my first year. I did read stretches from the book, but did not make it cover to cover. I intend to wash away that mark and get a crucial first step to my thesis done.
 
 \hypertarget{motivation}{%
-\section{Motivation}\label{motivation}}
+\subsection*{Motivation}\label{motivation}}
+\addcontentsline{toc}{subsection}{Motivation}
 
 There are a few fold objectives why I want to get some comprehensive set of notes written on the book:
 
@@ -167,7 +168,8 @@ There are a few fold objectives why I want to get some comprehensive set of note
 \end{enumerate}
 
 \hypertarget{content}{%
-\section{Content}\label{content}}
+\subsection*{Content}\label{content}}
+\addcontentsline{toc}{subsection}{Content}
 
 The way I am joting down points are in the following way:
 
@@ -258,18 +260,104 @@ For the first chapters we assume that sequences are extracted from regions witho
 
 5 Sequences \{\emph{s1, s2, s3, s4, s5}\} are drawn at the current time \(t=0\) and going back in time, pairs of lineages merge together. The internal nodes denote the common ancestors of the pair of lineages merging into it. Starting with \(n\) samples, (\(n=5\) in the above figure), there are \(n-1\) internal nodes and a total of \(2n-2\) branches with \(n\) external branches \emph{connecting the tips to the internal nodes} and \(n-2\) internal branches connecting the internal nodes.
 
-\hypertarget{an-unnumbered-section}{%
-\subsection*{An unnumbered section}\label{an-unnumbered-section}}
-\addcontentsline{toc}{subsection}{An unnumbered section}
+\hypertarget{mutation-and-mutation-model}{%
+\section{Mutation and Mutation Model}\label{mutation-and-mutation-model}}
 
-Chapters and sections are numbered by default. To un-number a heading, add a \texttt{\{.unnumbered\}} or the shorter \texttt{\{-\}} at the end of the heading, like in this section.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Variation or polymorphism in genetic data reveals the genealogical structure among the members of the sample. If the sample consists of identical sequences, even though a genealogy exists, there is no way to identify or pin-point a genealogy. So mutations that bring variation in genetic data is said to be the bridge between genealogy and genetic data.
+\item
+  Mutations can be of various types:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Single Nucleotide Polymorphism (SNPs): The sample differs in the nucleotide base at a particular site. Say a sample of 10 sequences might have 6 sequences with nucleotide `A' on its 3rd site and the rest having a `G' there.
+  \item
+    Insertions
+  \item
+    Deletions
+  \item
+    length variation
+  \end{enumerate}
+\item
+  The book largely deals with SNPs with recombination being introduced only in the later chapters.
+\item
+  Two mutation models are considered for the first few chapters:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Infinite sites model
+  \item
+    Infinite alleles model
+  \end{enumerate}
+\item
+  Infinite sites model - Every mutation (which we think of as a nucleotide substitution) happens at an independent site. So the number of sites with different bases in the sample is equal to the number of mutations that have taken place.
+\item
+  Infinite alleles model - Every mutation introduces a new allele into the population. We can consider the infinite site model to subsume the infinite allele model with the consideration that sequences can only be differentiated and not precisely known. Every new haploid corresponds to a new allele.
+\item
+  One might question the appropriateness of the above two models, after all sequences are of finite length and mutations might happen repeatedly on a particular site. John Wakeley has tried to support it by pointing out that the variation is rather small, (polymorphic sites are in humans are of the order \(10^{-3}\)).
+\end{enumerate}
+
+I think that the infinite site model maybe a good first iteration step, but one must consider their data. I work with viral sequences where the mutation rate is much higher and the infinite site model not so appropriate. But to understand the mutation process and how together with genealogy they affect variation in genetic data, the above models do help in that purpose.
+
+\hypertarget{quantifying-variation-in-genetic-data}{%
+\section{Quantifying Variation in Genetic Data}\label{quantifying-variation-in-genetic-data}}
+
+There are three quantities presented in the book to summarize and quantify genetic data:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  No.~of Segregating Sites in the sample \(S\)
+\item
+  Average pair-wise differences \(\pi\)
+\item
+  Site Frequency spectrum \(\xi_i\)
+\end{enumerate}
+
+\(S\) and \(\pi\) are straight-forward and easy to understand. Note that \(\pi\) can be written as:
+\[\pi = \frac{1}{{n \choose 2}}\sum_{i=1}^n \sum_{j=i+1}^n k_{ij}\]
+
+where \(k_{ij}\) is the number of differences between sequence \(i\) and sequence \(j\).
+It is clear that these measures though simple and easily obtainable are rather drastic as they reduce all the data to single numbers.
+The Site Frequency spectrum \(\xi_i\) gives a better view of the data. Suppose the ancestral sequence for the given sample is known. Then \(\xi_i\) counts the number of sites with \(i\) sequences having the mutant base and \(n-i\) sequences having the ancestral base. Note that this only works when the infinite sites model is at play. (It will be ambiguous to assign any \(\xi_i\) for any site undergoing multiple mutations). Also \(\xi_i\) are known as the unfolded site-frequency spectrum, with the condition being that the ancestral sequence is known. With the ancestral sequence unknown, folded site-frequency spectrum (\(\eta_i\)) is defined as: \[\eta_i = \frac{\xi_i + \xi_{n-i}}{1+\delta_{i, n-i}} \hspace{1cm} 1\leq i \leq  \left \lfloor \frac{n}{2} \right \rfloor\]
+
+Also, \(S\) and \(\pi\) can be expressed in terms of \(\xi_i\) as follows:
+\[\begin{align*} S =& \sum_{i=1}^{n-1}\xi_i \\ \pi =& \frac{1}{{n \choose 2}}\sum_{i=1}^{n-1}i(n-i)\xi_i \end{align*}\]
+\#\# Variation in a Real Dataset
+
+The Human PDHA1 dataset is analyzed here. It is a sample consisting of sequences from the 4.2Kb region of the PDHA1 locus from a geographically diverse sample of 35 humans.
 
 \hypertarget{the-coalescent}{%
 \chapter{The Coalescent}\label{the-coalescent}}
 
-After introducing and defining genealogies in the previous chapter, John Wakeley talks about the statistical properties of genealogies under the coalescent framework. To demonstrate the coalescent framework, he uses the classical population genetics models: a. Wright Fisher Model b. Moran Model and shows these models converging to the Coalescent in the limit.
+After introducing and defining genealogies in the previous chapter, John Wakeley talks about the statistical properties of genealogies under the coalescent framework. To demonstrate the coalescent framework, he uses the classical population genetics models:
 
-Throughout this chapter, there is no reference to variation in sequences with the following two reasons: 1. A sample without any variation still supports a genealogy, because of the way DNA replication takes place. 2. All variation is assumed to be selectively neutral (any selection is dealt later in the book) and so there is no population advantage with respect to any particular variation.
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Wright Fisher Model
+\item
+  Moran Model
+\end{enumerate}
+
+and shows these models converging to the Coalescent in the limit.
+
+Throughout this chapter, there is no reference to variation in sequences with the following two reasons:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  A sample without any variation still supports a genealogy, because of the way DNA replication takes place
+\item
+  All variation is assumed to be selectively neutral (any selection is dealt later in the book) and so there is no population advantage with respect to any particular variation.
+\end{enumerate}
 
 \hypertarget{basic-population-genetic-models}{%
 \section{Basic Population Genetic Models}\label{basic-population-genetic-models}}
@@ -281,18 +369,34 @@ Throughout this chapter, there is no reference to variation in sequences with th
 \begin{itemize}
 \tightlist
 \item
-  Perfectly non-overlapping generations
+  Perfectly \textbf{non-overlapping} generations
 \item
   Population size is constant and finite at all times
 \item
   Each generation all current individuals die and are replaced by their offsprings. This is a random process with the possibility that a current individual has no offsprings in the next generation. For any individual in the next generation, any individual in the current generation has an equal chance of being a parent.
 \end{itemize}
 
-Let's consider a simple example of a population with two alleles \textbf{A} and \textbf{B} following the WF model. Let the population size be \(N\) and \(K_t\) be the no. of \textbf{A} alleles in generation \(t\) with \(K_0 = i\). Then the probability that the \(K_1 = j\) is given by: \[\mathbb{P}_{ij} = {N \choose j}\left(\frac{i}{N}\right)^j\left(1-\frac{i}{N}\right)^{N-j}\] We also have that the expected number and variance of \textbf{A} alleles in generation \(1\) as \[\begin{align*} & \mathbb{E}(K_1) = N\left(\frac{i}{N}\right) = i \\ & \mathbb{V}ar(K_1) = N \left(\frac{i}{N}\right) \left(1 - \frac{i}{N}\right) = i\left(1-\frac{i}{N}\right)  \end{align*}\] The expected number of \textbf{A} alleles remains unchanged over time.
+Let's consider a simple example of a population with two alleles \textbf{A} and \textbf{B} following the WF model. Let the population size be \(N\) and \(K_t\) be the no. of \textbf{A} alleles in generation \(t\) with \(K_0 = i\). Then the probability that the \(K_1 = j\) is given by: \[\mathbb{P}_{ij} = {N \choose j}\left(\frac{i}{N}\right)^j\left(1-\frac{i}{N}\right)^{N-j}\] We also have that the expected number and variance of \textbf{A} alleles in generation \(1\) as \[\begin{align*} & \mathbb{E}(K_1) = N\left(\frac{i}{N}\right) = i \\ & \mathbb{V}ar(K_1) = N \left(\frac{i}{N}\right) \left(1 - \frac{i}{N}\right) = i\left(1-\frac{i}{N}\right)  \end{align*}\]
+
+The expected number of \textbf{A} alleles remains unchanged over time.
 
 \hypertarget{moran-model}{%
 \subsection*{Moran Model}\label{moran-model}}
 \addcontentsline{toc}{subsection}{Moran Model}
+
+\begin{itemize}
+\tightlist
+\item
+  Perfectly \textbf{Overlapping} Generations
+\item
+  Population size is again constant and finite over time
+\item
+  At the end of every generation, two current individuals are chosen. One individual survives and gives rise to an offspring where as the other perishes.
+\end{itemize}
+
+Consider the same example with the population following the Moran Model instead of the WF Model. Again let \(K_t\) be the no. of \textbf{A} allele in generation \(t\). Then with \(K_0=i\), probability that \(K_1=j\) is given by: \[ \mathbb{P}_{ij} = \begin{cases} p(1-p) & j=i+1 \\ (1-p)p & j=i-1 \\ p^2 + (1-p)^2 & j=i \\ 0 & \text{otherwise} \end{cases}    \]
+
+where (\(p=\frac{i}{N}\)). Again the expected number and variance of no. of \textbf{A} alleles is given by: \[\begin{align*}  \mathbb{E}(K_1) =& p(1-p)(i+1) + p(1-p)(i-1) + (p^2+(1-p)^2)i \\ =& i \\  \mathbb{V}ar(K_1) =& p(1-p)(i+1)^2 + p(1-p)(i-1)^2 + (p^2+(1-p)^2)i^2  -i^2 \\ =& 2p(1-p)  \end{align*}\]
 
 There are two steps to cross-reference any heading:
 
